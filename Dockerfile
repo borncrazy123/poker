@@ -8,10 +8,10 @@ MAINTAINER borncrazy123@123.com
 # RUN npm install -g n
 # RUN n 16.18.0
 
-WORKDIR /poker/
-COPY . app/
+COPY . /poker/app/
 
 
+WORKDIR /poker
 
 # run npm start
 # expose 7001
