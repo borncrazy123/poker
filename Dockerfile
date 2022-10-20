@@ -1,6 +1,10 @@
-from node:16.18.0-alpine3.15
+from ubuntu:latest
+
 maintainer borncrazy123@123.com
-copy . /app/
-workdir /app
-run npm start
-expose 7001
+
+# copy . /app/
+# workdir /app
+
+
+# run npm start
+# expose 7001
