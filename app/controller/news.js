@@ -10,9 +10,9 @@ class NewsController extends Controller {
         { id: 2, title: 'this is news 2', url: '/news/2' },
       ],
     };
-
+    
     const results = await this.app.mysql.query('select * from tb_1');
-    console.log('results:', results);
+    console.log('----->>>results:', results);
 
     await this.ctx.render('news/list.tpl', dataList);
   }
