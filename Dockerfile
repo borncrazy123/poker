@@ -11,8 +11,8 @@ run apt install -y npm
 run npm install -g n
 run n 16.18.0
 
-copy . /app/
-workdir /app
+copy . /poker/
+workdir /poker
 
 
 # run npm start
