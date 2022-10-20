@@ -15,4 +15,4 @@ WORKDIR /app
 # RUN npm start
 EXPOSE 7001
 
-ENTRYPOINT npm start
+ENTRYPOINT npm run dev
