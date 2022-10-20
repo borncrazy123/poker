@@ -8,7 +8,7 @@ MAINTAINER borncrazy123@123.com
 # RUN npm install -g n
 # RUN n 16.18.0
 
-COPY . /poker/app/
+COPY . /app/
 
 
 WORKDIR /poker
