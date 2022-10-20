@@ -9,8 +9,8 @@ run apt -y update
 
 run apt install -y npm
 
-# copy . /app/
-# workdir /app
+copy . /app/
+workdir /app
 
 
 # run npm start
