@@ -13,7 +13,3 @@ run apt-get install -y nodejs
 
 # run npm start
 # expose 7001
-
-apt update
-
-
