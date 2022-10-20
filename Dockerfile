@@ -1,15 +1,15 @@
-from ubuntu:latest
+FROM ubuntu:latest
 
 MAINTAINER borncrazy123@123.com
 
-run apt -y update
-run apt -y install curl
-run apt -y install npm
-run npm install -g n
-run n 16.18.0
+RUN apt -y update
+RUN apt -y install curl
+RUN apt -y install npm
+RUN npm install -g n
+RUN n 16.18.0
 
-workdir /poker
-copy . /app/
+WORKDIR /poker
+COPY ./app /app/
 
 
 
