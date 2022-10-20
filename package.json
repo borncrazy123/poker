@@ -9,14 +9,14 @@
   "dependencies": {
     "egg": "^3",
     "egg-scripts": "^2",
-    "egg-view-nunjucks": ""
+    "egg-view-nunjucks": "",
+    "egg-mysql": ""
   },
   "devDependencies": {
     "egg-bin": "^5",
     "egg-ci": "^2",
     "egg-mock": "^3.20.0",
-    "eslint": "^8",
-    "eslint-config-egg": "^12"
+    "eslint": "^8"
   },
   "engines": {
     "node": ">=16.0.0"
