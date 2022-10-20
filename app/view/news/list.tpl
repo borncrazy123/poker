@@ -10,6 +10,13 @@
         <a href="{{ item.url }}">{{ item.title }}</a>
       </li>
       {% endfor %}
+
+      {% for result in data %}
+      <li class="item">
+        {{ result.id }} >>> {{ result.name }}
+      </li>
+      {% endfor %}
+
     </ul>
   </body>
 </html>
