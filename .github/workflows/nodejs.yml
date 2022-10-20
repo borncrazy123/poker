@@ -45,5 +45,25 @@ jobs:
     #   with:
     #     token: ${{ secrets.CODECOV_TOKEN }}
 
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    # - name: Build the Docker image
+    #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+    - name: Log in to Docker Hub
+    uses: docker/login-action@v1  # 三方的action操作， 执行docker login
+    with:
+      username: ${{ secrets.DOCKERHUB_USERNAME }}  # 配置dockerhub的认证，在Github项目主页 【Settings】 -> 【Secrets】 添加对应变量
+      password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v3  # 抽取项目信息，主要是镜像的tag
+      with:
+        images: borncrazy123/poker
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2 # docker build & push
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
