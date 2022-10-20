@@ -1,6 +1,6 @@
 from ubuntu:latest
 
-maintainer borncrazy123@123.com
+MAINTAINER borncrazy123@123.com
 
 run apt -y update
 run apt -y install curl
