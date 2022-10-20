@@ -46,5 +46,4 @@ jobs:
     #     token: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Build the Docker image
-      uses: actions/checkout@v3
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
