@@ -11,7 +11,7 @@ MAINTAINER borncrazy123@123.com
 COPY . /app/
 
 
-WORKDIR /poker
+WORKDIR /app
 
 # run npm start
 # expose 7001
