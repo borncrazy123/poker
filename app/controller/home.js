@@ -5,18 +5,34 @@ const { Controller } = require('egg');
 class HomeController extends Controller {
   async index() {
     const { ctx } = this;
-    // ctx.body = 'hi, egg........';
 
-    const results = await ctx.service.poker.list();
+    // 登陆判断跳转 
+    if (!ctx.isAuthenticated()) {
+      await ctx.redirect('/login');
+    }
+
+    const results = await ctx.service.poker.shuffle();
     // console.log('results:', results);
 
     const dataList = {
-      data: results
+      user: ctx.user,
+      data: results,
     };
     
     await ctx.render('home/home.tpl', dataList);
 
   }
+
+  async authCallback() {
+    const { ctx } = this;
+    await ctx.render('home/authCallback.tpl');
+  }
+  
+  async login() {
+    const { ctx } = this;
+    await ctx.render('home/login.tpl');
+  }
+
 }
 
 module.exports = HomeController;

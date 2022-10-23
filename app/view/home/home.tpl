@@ -1,22 +1,21 @@
 <html>
   <head>
     <title>Hacker News</title>
-    <link rel="stylesheet" href="/public/css/news.css" />
+    <link rel="stylesheet" href="/public/css/home.css" />
   </head>
   <body>
-    <ul class="news-view view">
-      {% for item in list %}
-      <li class="item">
-        <a href="{{ item.url }}">{{ item.title }}</a>
-      </li>
-      {% endfor %}
-
+    <div>
+      userName: {{user.username}}
+      &&
+      password: {{user.password}}
+    </div>
+    <div class="desk">
       {% for result in data %}
-      <li class="item">
-        {{ result.id }} >>> {{ result.name }}
-      </li>
+        <div class="item" >
+          {{ result }}
+        </div>
       {% endfor %}
+    </div>
 
-    </ul>
   </body>
 </html>

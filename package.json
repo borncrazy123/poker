@@ -10,7 +10,9 @@
     "egg": "^3",
     "egg-scripts": "^2",
     "egg-view-nunjucks": "",
-    "egg-mysql": ""
+    "egg-mysql": "",
+    "egg-passport": "",
+    "passport-local": ""
   },
   "devDependencies": {
     "egg-bin": "^5",
