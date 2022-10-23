@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[745],{16808:function(l,e,n){n.r(e),n.d(e,{default:function(){return s}});var o=n(89172),a={container:"container___RKXp0"},r=n(62086),u=function(){var t=(0,o.useModel)("global"),c=t.name;return(0,r.jsx)("div",{className:a.container,children:"xxxxx"})},s=u}}]);
