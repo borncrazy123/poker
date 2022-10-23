@@ -8,6 +8,7 @@ module.exports = app => {
 
   // 定义页面URL
   router.get('/', controller.home.index);
+  router.get('/home', controller.home.home);
 
   // 鉴权成功后的回调页面
   router.get('/authCallback', controller.home.authCallback);
@@ -32,6 +33,6 @@ module.exports = app => {
     '/api/shuffle', passport.authenticate('local', { successRedirect: '/authCallback', failureRedirect: '/login' }),
   );
 
-  router.get('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
+  // router.get('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
 
 };
