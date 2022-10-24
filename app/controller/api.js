@@ -20,6 +20,7 @@ class ApiController extends Controller {
 
     async shuffle() {
         const { ctx } = this;
+
         const results = await ctx.service.poker.shuffle();
         ctx.body = results;
     }

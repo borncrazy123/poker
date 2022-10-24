@@ -19,7 +19,6 @@ module.exports = (app) => {
           password,
         };
         // debug('%s %s get user: %j', req.method, req.url, user);
-
         // 处理登陆情况
         if ('aaaa,bbbb,cccc'.indexOf(user.username.trim()) < 0) {
           console.log('登陆出错:',user.username,user.password);

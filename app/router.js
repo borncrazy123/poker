@@ -8,7 +8,8 @@ module.exports = app => {
 
   // 定义页面URL
   router.get('/', controller.home.index);
-  router.get('/home', controller.home.home);
+  router.get('/index', controller.home.index);
+  // router.get('/home', controller.home.home);
 
   // 鉴权成功后的回调页面
   router.get('/authCallback', controller.home.authCallback);
@@ -19,20 +20,11 @@ module.exports = app => {
 
   // 定义接口类API
   router.get('/api/pokerList', controller.api.pokerList);
-  // router.get('/api/shuffle', controller.api.shuffle);
-  
+  router.get('/api/shuffle', controller.api.shuffle);
 
   // 登录校验
   router.post(
     '/login', passport.authenticate('local', { successRedirect: '/' }),
   );
-  router.get(
-    '/', passport.authenticate('local', { successRedirect: '/authCallback', failureRedirect: '/login' }),
-  );
-  router.get(
-    '/api/shuffle', passport.authenticate('local', { successRedirect: '/authCallback', failureRedirect: '/login' }),
-  );
-
-  // router.get('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
 
 };
