@@ -22,6 +22,7 @@ class ApiController extends Controller {
     async shuffle() {
         const { ctx } = this;
         const results = await ctx.service.poker.shuffle();
+        this.getPokerDetailMap();
         ctx.body = results;
     }
 
@@ -37,6 +38,33 @@ class ApiController extends Controller {
         const { ctx } = this;
         const results = await ctx.service.poker.loginPersonList();
         ctx.body = results;
+    }
+
+    // 定义牌的对应关系
+    getPokerDetailMap() {
+        let pokerDeailMap = {};
+        // 初始化R
+        // {0:'R1',1:'R2'}
+        for (let i = 0; i < 13; i++) {
+            pokerDeailMap[i] = 'R' + (i + 1);
+        }
+        // 初始化D
+        for (let i = 13; i < 26; i++) {
+            pokerDeailMap[i] = 'D' + (i - 13 + 1);
+        }
+        // 初始化B
+        for (let i = 26; i < 39; i++) {
+            pokerDeailMap[i] = 'B' + (i - 26 + 1);
+        }
+        // 初始化M
+        for (let i = 39; i < 52; i++) {
+            pokerDeailMap[i] = 'M' + (i - 39 + 1);
+        }
+        // 初始化K
+        for (let i = 52; i < 54; i++) {
+            pokerDeailMap[i] = 'K' + (i - 52 + 1);
+        }
+        console.log('pokerDeailMap:', pokerDeailMap);
     }
 
 }
