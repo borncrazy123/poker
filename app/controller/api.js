@@ -18,10 +18,24 @@ class ApiController extends Controller {
         ctx.body = results;
     }
 
+    // 打乱洗牌
     async shuffle() {
         const { ctx } = this;
-
         const results = await ctx.service.poker.shuffle();
+        ctx.body = results;
+    }
+
+    // 获取所有桌子
+    async deskList() {
+        const { ctx } = this;
+        const results = await ctx.service.poker.deskList();
+        ctx.body = results;
+    }
+
+    // 获取所有登陆围观人员
+    async loginPersonList() {
+        const { ctx } = this;
+        const results = await ctx.service.poker.loginPersonList();
         ctx.body = results;
     }
 

@@ -1,7 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
 
 module.exports = (app) => {
-  
+
   // 挂载 strategy
   app.passport.use(
     new LocalStrategy(
@@ -20,14 +20,14 @@ module.exports = (app) => {
         };
         // debug('%s %s get user: %j', req.method, req.url, user);
         // 处理登陆情况
-        if ('aaaa,bbbb,cccc'.indexOf(user.username.trim()) < 0) {
-          console.log('登陆出错:',user.username,user.password);
+        if ('aaaa,bbbb,cccc,dddd,eeee,ffff,gggg,hhhh'.indexOf(user.username.trim()) < 0) {
+          console.log('登陆出错:', user.username, user.password);
           return;
         } else {
           // 登陆成功处理
           app.passport.doVerify(req, user, done);
         }
-        
+
       },
     ),
   );
@@ -43,5 +43,5 @@ module.exports = (app) => {
   app.passport.deserializeUser(async (ctx, user) => {
     return user;
   });
-  
+
 };

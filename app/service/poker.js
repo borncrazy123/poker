@@ -28,6 +28,30 @@ class PokerService extends Service {
 
   }
 
+  async deskList() {
+    // 当前先写死只有2个桌子，后面写入数据库吧
+    let deskList = [
+      { id: 1, name: '桌1' },
+      { id: 2, name: '桌2' },
+    ];
+
+    return deskList;
+  }
+
+  async loginPersonList() {
+    // 当前先写定已有6个人登陆，后面从数据库里读吧
+    let loginPersonList = [
+      { id: 1, name: 'person1' },
+      { id: 2, name: 'person2' },
+      { id: 3, name: 'person3' },
+      { id: 4, name: 'person4' },
+      { id: 5, name: 'person5' },
+      { id: 6, name: 'person6' },
+    ];
+
+    return loginPersonList;
+  }
+
 }
 
 module.exports = PokerService;

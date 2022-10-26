@@ -21,6 +21,8 @@ module.exports = app => {
   // 定义接口类API
   router.get('/api/pokerList', controller.api.pokerList);
   router.get('/api/shuffle', controller.api.shuffle);
+  router.get('/api/deskList', controller.api.deskList);
+  router.get('/api/loginPersonList', controller.api.loginPersonList);
 
   // 登录校验
   router.post(
