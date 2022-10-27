@@ -28,28 +28,53 @@ class PokerService extends Service {
 
   }
 
-  async deskList() {
+  async getDeskList() {
     // 当前先写死只有2个桌子，后面写入数据库吧
     let deskList = [
-      { id: 1, name: '桌1' },
-      { id: 2, name: '桌2' },
+      { id: 1, name: '桌1', peson_cnt: 8 },
+      { id: 2, name: '桌2', peson_cnt: 6 },
     ];
 
     return deskList;
   }
 
   async loginPersonList() {
-    // 当前先写定已有6个人登陆，后面从数据库里读吧
+    // 当前先写定已有8个人登陆，后面从数据库里读吧
     let loginPersonList = [
-      { id: 1, name: 'person1' },
-      { id: 2, name: 'person2' },
-      { id: 3, name: 'person3' },
-      { id: 4, name: 'person4' },
-      { id: 5, name: 'person5' },
-      { id: 6, name: 'person6' },
+      { id: 1, name: 'a' },
+      { id: 2, name: 'b' },
+      { id: 3, name: 'c' },
+      { id: 4, name: 'd' },
+      { id: 5, name: 'e' },
+      { id: 6, name: 'f' },
+      { id: 7, name: 'g' },
+      { id: 8, name: 'h' },
     ];
 
     return loginPersonList;
+  }
+
+  getCurrentDeskPersonList(_desk_id) {
+    // 当前先写定已有8个人登陆，后面从数据库里读吧
+    let loginPersonList = [[],[
+      { id: 1, name: 'a' },
+      { id: 2, name: 'b' },
+      { id: 3, name: 'c' },
+      { id: 4, name: 'd' },
+      { id: 5, name: 'e' },
+      { id: 6, name: 'f' },
+      { id: 7, name: 'g' },
+      { id: 8, name: 'h' },
+    ], [
+      { id: 11, name: '1a' },
+      { id: 12, name: '2b' },
+      { id: 13, name: '3c' },
+      { id: 14, name: '4d' },
+      { id: 15, name: '5e' },
+      { id: 16, name: '6f' },
+    ]];
+
+    return loginPersonList[_desk_id];
   }
 
 }

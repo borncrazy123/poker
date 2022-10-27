@@ -14,7 +14,7 @@ class ApiController extends Controller {
         const results = await ctx.service.poker.list();
 
         // const results = await app.mysql.query('select * from tb_1');
-        console.log('results:', results);
+        // console.log('results:', results);
         ctx.body = results;
     }
 
@@ -27,9 +27,9 @@ class ApiController extends Controller {
     }
 
     // 获取所有桌子
-    async deskList() {
+    async getDeskList() {
         const { ctx } = this;
-        const results = await ctx.service.poker.deskList();
+        const results = await ctx.service.poker.getDeskList();
         ctx.body = results;
     }
 
@@ -37,6 +37,15 @@ class ApiController extends Controller {
     async loginPersonList() {
         const { ctx } = this;
         const results = await ctx.service.poker.loginPersonList();
+        ctx.body = results;
+    }
+
+    async getCurrentDeskPersonList() {
+        const { ctx } = this;
+        const query = ctx.query;
+        // console.log('query:', query);
+
+        const results = await ctx.service.poker.getCurrentDeskPersonList(query.id);
         ctx.body = results;
     }
 
@@ -64,7 +73,7 @@ class ApiController extends Controller {
         for (let i = 52; i < 54; i++) {
             pokerDeailMap[i] = 'K' + (i - 52 + 1);
         }
-        console.log('pokerDeailMap:', pokerDeailMap);
+        // console.log('pokerDeailMap:', pokerDeailMap);
     }
 
 }
