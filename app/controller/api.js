@@ -26,6 +26,14 @@ class ApiController extends Controller {
         ctx.body = results;
     }
 
+    // 新建桌子
+    async createDesk(_deskInfo) {
+        const { ctx } = this;
+        console.log('_deskInfo:', ctx.request.body);
+        const results = await ctx.service.poker.createDesk(ctx.request.body);
+        ctx.body = results;
+    }
+
     // 获取所有桌子
     async getDeskList() {
         const { ctx } = this;

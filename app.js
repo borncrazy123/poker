@@ -20,26 +20,31 @@ module.exports = (app) => {
         };
         // debug('%s %s get user: %j', req.method, req.url, user);
         // 处理登陆情况
-        if ('aaaa,bbbb,cccc,dddd,eeee,ffff,gggg,hhhh'.indexOf(user.username.trim()) < 0) {
-          console.log('登陆出错:', user.username, user.password);
-          return;
-        } else {
-          // 登陆成功处理
-          app.passport.doVerify(req, user, done);
-        }
+        app.passport.doVerify(req, user, done);
 
       },
     ),
   );
 
-  // 处理用户信息
+  // 登陆处理，处理用户信息
   app.passport.verify(async (ctx, user) => {
-    ctx.logger.debug('debug info');
+    // 写数据库信息
+    const results = await ctx.service.poker.setPokerUserInfo(user);
+
+    // ctx.logger.debug('debug info');
+    if (!results) {
+      console.log('登陆出错：user:', user);
+      return;
+    }
+
     return user;
+
   });
+
   app.passport.serializeUser(async (ctx, user) => {
     return user;
   });
+
   app.passport.deserializeUser(async (ctx, user) => {
     return user;
   });
