@@ -109,9 +109,9 @@ class PokerService extends Service {
     const updateInfoResult = await this.app.mysql.query('update poker_map_desk_user set status = 0 and modify_time = ? where uid = ?', [this.app.mysql.literals.now, uid]);
     // 判断更新成功
     const updateSuccess = updateInfoResult.affectedRows === 1;
-    if (!updateSuccess) {
-      console.log('退出之前桌子的数据库更新失败.' + updateInfoResult.affectedRows);
-    }
+    // if (!updateSuccess) {
+    //   console.log('退出之前桌子的数据库更新失败.' + updateInfoResult.affectedRows);
+    // }
 
     // 加入当前选中的桌子
     let did = _deskInfo.id;
