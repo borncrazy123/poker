@@ -27,9 +27,9 @@ class ApiController extends Controller {
     }
 
     // 新建桌子
-    async createDesk(_deskInfo) {
+    async createDesk() {
         const { ctx } = this;
-        console.log('_deskInfo:', ctx.request.body);
+        // console.log('_deskInfo:', ctx.request.body);
         const results = await ctx.service.poker.createDesk(ctx.request.body);
         ctx.body = results;
     }
@@ -38,6 +38,22 @@ class ApiController extends Controller {
     async getDeskList() {
         const { ctx } = this;
         const results = await ctx.service.poker.getDeskList();
+        ctx.body = results;
+    }
+
+    // 玩家申请加入桌子
+    async enterDeskByDid() {
+        const { ctx } = this;
+        // console.log('_deskInfo:', ctx.request.body);
+        const results = await ctx.service.poker.enterDeskByDid(ctx.request.body);
+        ctx.body = results;
+    }
+
+    // 玩家主动或被动退出桌子
+    async exitDeskByUid() {
+        // 找到所有UID对应的用户，设置为退出态就好了
+        const { ctx } = this;
+        const results = await ctx.service.poker.exitDeskByUid();
         ctx.body = results;
     }
 

@@ -22,6 +22,7 @@ module.exports = app => {
   router.get('/api/pokerList', controller.api.pokerList);
   router.get('/api/shuffle', controller.api.shuffle);
   router.post('/api/createDesk', controller.api.createDesk);
+  router.post('/api/enterDeskByDid', controller.api.enterDeskByDid);
   router.get('/api/getDeskList', controller.api.getDeskList);
   router.get('/api/loginPersonList', controller.api.loginPersonList);
   router.get('/api/getCurrentDeskPersonList', controller.api.getCurrentDeskPersonList);

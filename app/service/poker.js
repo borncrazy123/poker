@@ -93,6 +93,45 @@ class PokerService extends Service {
     return pokerDeskResults;
   }
 
+  // 玩家申请加入桌子
+  async enterDeskByDid(_deskInfo) {
+    // console.log('_deskInfo:', _deskInfo);
+    const { app, ctx } = this;
+
+    // 获取当前登陆用户信息
+    // console.log('ctx.user:', ctx.user);
+    const pokerUserResults = await app.mysql.query('select * from poker_user where name = "' + ctx.user.username + '"');
+    // console.log('pokerUserResults:', pokerUserResults);
+    let uid = pokerUserResults[0].id;
+
+    // 先判断当前桌子是否还可以加入，主要判断人数吧
+    // 先退出之前加入的桌子
+    const updateInfoResult = await this.app.mysql.query('update poker_map_desk_user set status = 0 and modify_time = ? where uid = ?', [this.app.mysql.literals.now, uid]);
+    // 判断更新成功
+    const updateSuccess = updateInfoResult.affectedRows === 1;
+    if (!updateSuccess) {
+      console.log('退出之前桌子的数据库更新失败.' + updateInfoResult.affectedRows);
+    }
+
+    // 加入当前选中的桌子
+    let did = _deskInfo.id;
+    const insertInfoResult = await this.app.mysql.insert('poker_map_desk_user', {
+      uid: uid,
+      did: did,
+      status: 1,
+    });
+    const insertSuccess = insertInfoResult.affectedRows === 1;
+    if (!insertSuccess) {
+      console.log('加入当前选中的桌子的数据库插入失败.' + insertInfoResult.affectedRows);
+    }
+
+  }
+
+  // 玩家主动或被动退出桌子
+  async exitDeskByUid() {
+    // 找到所有UID对应的用户，设置为退出态就好了
+  }
+
   async loginPersonList() {
     // 当前先写定已有8个人登陆，后面从数据库里读吧
     let loginPersonList = [
@@ -109,27 +148,12 @@ class PokerService extends Service {
     return loginPersonList;
   }
 
-  getCurrentDeskPersonList(_desk_id) {
-    // 当前先写定已有8个人登陆，后面从数据库里读吧
-    let loginPersonList = [[], [
-      { id: 1, name: 'a' },
-      { id: 2, name: 'b' },
-      { id: 3, name: 'c' },
-      { id: 4, name: 'd' },
-      { id: 5, name: 'e' },
-      { id: 6, name: 'f' },
-      { id: 7, name: 'g' },
-      { id: 8, name: 'h' },
-    ], [
-      { id: 11, name: '1a' },
-      { id: 12, name: '2b' },
-      { id: 13, name: '3c' },
-      { id: 14, name: '4d' },
-      { id: 15, name: '5e' },
-      { id: 16, name: '6f' },
-    ]];
+  async getCurrentDeskPersonList(_desk_id) {
+    const { app } = this;
+    const loginPersonList = await app.mysql.query('select a.uid, b.name from (select uid from poker_map_desk_user where did = ' + _desk_id + ' and status = 1) a left join poker_user b on a.uid = b.id');
+    // console.log('loginPersonList:', loginPersonList);
 
-    return loginPersonList[_desk_id];
+    return loginPersonList;
   }
 
 }
