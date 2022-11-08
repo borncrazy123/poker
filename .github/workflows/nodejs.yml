@@ -37,7 +37,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install Dependencies
-      run: npm i –legacy-peer-deps
+      run: npm i --legacy-peer-deps
 
     # - name: Continuous Integration
     #   run: npm run ci
