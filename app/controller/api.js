@@ -123,7 +123,7 @@ class ApiController extends Controller {
                 img: '/public/img/poker/kid_' + (i - 53 + 1),
             };
         }
-        console.log('pokerDeailMap:', pokerDeailMap);
+        // console.log('pokerDeailMap:', pokerDeailMap);
 
         return pokerDeailMap;
     }
