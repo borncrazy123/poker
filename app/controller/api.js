@@ -22,8 +22,13 @@ class ApiController extends Controller {
     async shuffle() {
         const { ctx } = this;
         const results = await ctx.service.poker.shuffle();
-        this.getPokerDetailMap();
-        ctx.body = results;
+        let pokerDetailMap = this.getPokerDetailMap();
+        let pokerDetail = [];
+        results.map((result) => {
+            pokerDetail.push(pokerDetailMap[result]);
+        });
+        
+        ctx.body = pokerDetail;
     }
 
     // 新建桌子
@@ -76,28 +81,51 @@ class ApiController extends Controller {
     // 定义牌的对应关系
     getPokerDetailMap() {
         let pokerDeailMap = {};
-        // 初始化R
-        // {0:'R1',1:'R2'}
+        // 初始化红桃
         for (let i = 0; i < 13; i++) {
-            pokerDeailMap[i] = 'R' + (i + 1);
+            pokerDeailMap[i] = {
+                name: 'heart_' + (i + 1),
+                img: '/public/img/poker/heart_' + (i + 1),
+            };
         }
-        // 初始化D
+        // 初始化黑桃
         for (let i = 13; i < 26; i++) {
-            pokerDeailMap[i] = 'D' + (i - 13 + 1);
+            pokerDeailMap[i] = {
+                name: 'spade_' + (i - 13 + 1),
+                img: '/public/img/poker/spade_' + (i - 13 + 1),
+            };
         }
-        // 初始化B
+        // 初始化方块
         for (let i = 26; i < 39; i++) {
-            pokerDeailMap[i] = 'B' + (i - 26 + 1);
+            pokerDeailMap[i] = {
+                name: 'diamond_' + (i - 26 + 1),
+                img: '/public/img/poker/diamond_' + (i - 26 + 1),
+            };
         }
-        // 初始化M
+        // 初始化梅花
         for (let i = 39; i < 52; i++) {
-            pokerDeailMap[i] = 'M' + (i - 39 + 1);
+            pokerDeailMap[i] = {
+                name: 'plum_' + (i - 39 + 1),
+                img: '/public/img/poker/plum_' + (i - 39 + 1),
+            };
         }
-        // 初始化K
-        for (let i = 52; i < 54; i++) {
-            pokerDeailMap[i] = 'K' + (i - 52 + 1);
+        // 初始化小鬼
+        for (let i = 52; i < 53; i++) {
+            pokerDeailMap[i] = {
+                name: 'kid_' + (i - 52 + 1),
+                img: '/public/img/poker/kid_' + (i - 52 + 1),
+            };
         }
-        // console.log('pokerDeailMap:', pokerDeailMap);
+        // 初始化大鬼
+        for (let i = 53; i < 54; i++) {
+            pokerDeailMap[i] = {
+                name: 'ghost_' + (i - 53 + 1),
+                img: '/public/img/poker/kid_' + (i - 53 + 1),
+            };
+        }
+        console.log('pokerDeailMap:', pokerDeailMap);
+
+        return pokerDeailMap;
     }
 
 }
