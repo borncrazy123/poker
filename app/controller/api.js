@@ -9,6 +9,14 @@ class ApiController extends Controller {
         ctx.body = 'logout success.';
     }
 
+    async getLoginUserInfo() {
+        const { ctx } = this;
+        let userInfo = {
+            "username": ctx.user.username,
+        };
+        ctx.body = userInfo;
+    }
+
     async pokerList() {
         const { ctx, app } = this;
         const results = await ctx.service.poker.list();
@@ -27,7 +35,7 @@ class ApiController extends Controller {
         results.map((result) => {
             pokerDetail.push(pokerDetailMap[result]);
         });
-        
+
         ctx.body = pokerDetail;
     }
 

@@ -19,6 +19,7 @@ module.exports = app => {
   router.get('/api/logout', controller.api.logout);
 
   // 定义接口类API
+  router.get('/api/getLoginUserInfo', controller.api.getLoginUserInfo);
   router.get('/api/pokerList', controller.api.pokerList);
   router.get('/api/shuffle', controller.api.shuffle);
   router.post('/api/createDesk', controller.api.createDesk);
